@@ -25,38 +25,49 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8F2F8),
-      body: Stack(
-        children: [
-          const ChatBackground(),
+      body: LayoutBuilder(
+        builder: (context, constraints){
+          final width = constraints.maxWidth;
+          final height = constraints.maxHeight;
+          return Stack(
+            children: [
+              const ChatBackground(),
+              Positioned(
+                top: height * 0.25,
+                left: width * 0.1,
+                child: Text("LayoutBuilder Percent",style: TextStyle(fontSize: 32),),
+              ),
+              // Example positioned text
+              Positioned(
+                top: size.height * 0.1,
+                left: size.width * 0.1,
+                child: const Text(
+                  "Top Left ",
+                  style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold,color: Colors.white),
+                ),
+              ),
 
-          // Example positioned text
-          Positioned(
-            top: size.height * 0.1,
-            left: size.width * 0.1,
-            child: const Text(
-              "Top Left ",
-              style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold,color: Colors.white),
-            ),
-          ),
+              Positioned(
+                bottom: size.height * 0.1,
+                right: size.width * 0.1,
+                child: const Text(
+                  "Bottom Right Text",
+                  style: TextStyle(fontSize: 20, color: Colors.blueAccent),
+                ),
+              ),
+              Align(
+                //alignment: Alignment.topLeft, // or Alignment(0.2, -0.7)
+                alignment:Alignment(0, 0),
+                child: Text("Aligned",style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold,color: Colors.green),),
+              ),
+              Transform.translate(
+                offset: Offset(100, 250), // x = right, y = down
+                child: Text("Offset Translation",style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold,color: Colors.red),),
+              ),
+            ],
+          );
+        },
 
-          Positioned(
-            bottom: size.height * 0.1,
-            right: size.width * 0.1,
-            child: const Text(
-              "Bottom Right Text",
-              style: TextStyle(fontSize: 20, color: Colors.blueAccent),
-            ),
-          ),
-          Align(
-            //alignment: Alignment.topLeft, // or Alignment(0.2, -0.7)
-            alignment:Alignment(0, 0),
-            child: Text("Aligned",style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold,color: Colors.green),),
-          ),
-          Transform.translate(
-            offset: Offset(100, 250), // x = right, y = down
-            child: Text("Offset Translation",style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold,color: Colors.red),),
-          ),
-        ],
       ),
     );
   }

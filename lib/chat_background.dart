@@ -22,7 +22,7 @@ class ChatBackgroundPainter extends CustomPainter {
     final strokePaint = Paint()
       ..color = const Color(0xFFB3CFFF)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 3;
+      ..strokeWidth = 10;
 
     final topPath = Path()
       ..moveTo(0, 0)
